@@ -49,6 +49,7 @@ loop do
       sleep(1)
       car.fuel += 1
       fuel_reserves -= 1
+      puts "Filled 1 gallon..."
     end
     puts "Done. Tank full. #{fuel_reserves} Gallons left in the reserves."
   elsif choice == 's'
