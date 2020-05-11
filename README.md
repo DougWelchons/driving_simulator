@@ -4,13 +4,11 @@ This is an activity to practice refactoring and emphasize the principles of Abst
 
 ## Setup
 
-Clone down the repository.
-
-If you haven't already, install Minitest: `gem install minitest`
-
-Run the code with `ruby driving_simulator.rb`
-
-Run the test with `ruby test/car_test.rb`
+* Clone down the repository.
+* If you haven't already, install Minitest: `gem install minitest`
+* From the root of the project:
+      * Run the code with `ruby driving_simulator.rb`
+      * Run the test with `ruby test/car_test.rb`
 
 ### Additions
 
