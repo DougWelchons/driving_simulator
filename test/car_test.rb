@@ -1,24 +1,49 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/car'
+require './lib/fuel_reserves'
 
 class CarTest < Minitest::Test
-  def test_it_has_attributes
-    car = Car.new(30, 12)
-    assert_equal 30, car.mpg
-    assert_equal 12, car.fuel_capacity
-    assert_equal 0.0, car.odometer
-    assert_equal 0.0, car.fuel
+  def setup
+    @car = Car.new(3, 1)
+    @fuel_reserves = FuelReserves.new
   end
 
-  def test_it_can_change_attributes
-    car = Car.new(30, 12)
-    car.odometer += 0.75
-    car.odometer += 0.75
-    assert_equal 1.5, car.odometer
+  def test_it_can_add_fuel
+    @car.add_fuel(@fuel_reserves)
 
-    car.fuel += 0.9
-    car.fuel += 0.9
-    assert_equal 1.8, car.fuel
+    assert_equal 1, @car.fuel
+  end
+
+  def test_car_has_stats
+    msg = "
+    ----
+    Odometer: 0.0
+    Fuel: 0.0 gallons.
+    MPG: 3.
+    Fuel Capacity: 1.
+    ----
+    "
+
+    assert_equal msg, @car.stats
+  end
+
+  def test_it_can_calcualte_gas_needed
+    actual = @car.gas_needed(3)
+    assert_equal 1, actual
+  end
+
+  def test_it_can_drive
+    actual = @car.drive(30)
+    msg = "Not enough gas to drive that far."
+
+    assert_equal msg, actual
+
+    @car.add_fuel(@fuel_reserves)
+
+    actual = @car.drive(1)
+    msg = "Done. Drove 1 miles."
+
+    assert_equal msg, actual
   end
 end
